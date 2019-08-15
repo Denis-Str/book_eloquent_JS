@@ -49,4 +49,32 @@ const reverseArrayInPlace = (arr) => {
 
 reverseArrayInPlace(arrayValue);
 
-console.log(arrayValue);
+// console.log(arrayValue);
+
+const arrayToList = (arr) => {
+    let list = {
+        value : this.value,
+        rest : null
+    };
+    const iter = (count, acc) => {
+        if (count === arr.length) {
+            return acc
+        }
+        return iter(count + 1, {
+            value : arr[count],
+            rest : acc
+        })
+    };
+    return iter(0, list);
+};
+
+console.log(arrayToList([10, 20]));
+
+// let list = {
+//     value : 1,
+//     rest : {
+//         value : 2,
+//         rest : null
+//     }
+// };
+// console.log(list);
