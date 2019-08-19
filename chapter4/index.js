@@ -52,17 +52,25 @@ reverseArrayInPlace(arrayValue);
 // console.log(arrayValue);
 
 const arrayToList = (arr) => {
-    let node = null;
-    const iter = (i, node) => {
-        if (i < 0) {
-            return node
-        }
-        return iter(i - 1, {
+    let list = null;
+    const loop = (i, list) => {
+        if (i < 0) return list;
+        return loop(i - 1, {
             value : arr[i],
-            rest : node
+            rest : list
         })
     };
-    return iter(arr.length - 1, node);
+    return loop(arr.length - 1, list);
+};
+
+const listToArray = (obj) => {
+    let arr = [];
+    const loop = (obj) => {
+        arr.push(obj.value);
+        if (obj.rest === null) return arr;
+        return loop(obj.rest)
+    };
+    return loop(obj)
 };
 
 // function arrayToList(array) {
@@ -72,5 +80,13 @@ const arrayToList = (arr) => {
 //     }
 //     return list;
 // }
+// function listToArray(list) {
+//     let array = [];
+//     for (let node = list; node; node = node.rest) {
+//         array.push(node.value);
+//     }
+//     return array;
+// }
 
 console.log(arrayToList([1, 2, 3]));
+console.log(listToArray(arrayToList([1, 2, 3])));
