@@ -73,6 +73,22 @@ const listToArray = (obj) => {
     return loop(obj)
 };
 
+const prepend = (value, node) => {
+     return {
+         value,
+         rest: node
+     }
+};
+
+const nth = (node, index) => {
+    const loop = (obj, i) => {
+        if (i === index) return obj.value;
+        if (obj.rest === null) return undefined;
+        return loop(obj.rest, i + 1)
+    };
+    return loop(node, 0)
+};
+
 // function arrayToList(array) {
 //     let list = null;
 //     for (let i = array.length - 1; i >= 0; i--) {
@@ -90,3 +106,5 @@ const listToArray = (obj) => {
 
 console.log(arrayToList([1, 2, 3]));
 console.log(listToArray(arrayToList([1, 2, 3])));
+console.log(prepend(10, arrayToList([20])));
+console.log(nth(arrayToList([10, 20, 30]), 2));
