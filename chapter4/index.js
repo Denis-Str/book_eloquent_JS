@@ -89,6 +89,22 @@ const nth = (node, index) => {
     return loop(node, 0)
 };
 
+let obj = {here: {is: "an"}, object: 2};
+
+const deepEqual = (obj1, obj2) => {
+    let key1 = Object.keys(obj1);
+    let key2 = Object.keys(obj2);
+
+    if ( obj1 === obj2) return true;
+    if (typeof obj1 !== typeof obj2 && obj1 !== null && obj2 !== null) return false;
+    if (key1.length !== key2.length) return false;
+
+    for (let key of key1) {
+        if (!key2.includes(key) || !deepEqual(obj1[key], obj2[key])) return false;
+    }
+    return true;
+};
+
 // function arrayToList(array) {
 //     let list = null;
 //     for (let i = array.length - 1; i >= 0; i--) {
@@ -108,3 +124,6 @@ console.log(arrayToList([1, 2, 3]));
 console.log(listToArray(arrayToList([1, 2, 3])));
 console.log(prepend(10, arrayToList([20])));
 console.log(nth(arrayToList([10, 20, 30]), 2));
+console.log(deepEqual(obj, obj));
+console.log(deepEqual(obj, {here: 1, object: 2}));
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
